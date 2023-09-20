@@ -1,7 +1,7 @@
 import "./style.css";
 import {useState} from "react";
 
-const Form = () => {
+const Form = ({ calculateResult, result }) => {
 
     const currencies = [
         {
@@ -30,6 +30,7 @@ const Form = () => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();
+        calculateResult({currency, amount});
     }
 
     return(
@@ -67,7 +68,7 @@ const Form = () => {
               </p>
             </fieldset>
           <button className="form__button">Wyślij</button>
-          <span className="form__result"></span>
+          <span className="form__result">{result}</span>
         </form>
     )
 }
