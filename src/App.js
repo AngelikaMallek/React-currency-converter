@@ -5,7 +5,7 @@ function App() {
   return (
     <div>
       <Form />
-      <span class="importantText">* - pole wymagane </span>
+      <span className="importantText">* - pole wymagane </span>
     </div>
   );
 }
