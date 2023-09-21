@@ -1,36 +1,16 @@
 import "./style.css";
+import currencies from "../currencies"; 
 import {useState} from "react";
 
 const Form = ({ calculateResult, result }) => {
 
-    const currencies = [
-        {
-            id: 1,
-            name: "Euro",
-            shortName: "EUR",
-            value: 4.69,
-        },
-        {
-            id: 2,
-            name: "Dolar amerykański",
-            shortName: "USD",
-            value: 4.30,
-        },
-        {
-            id: 3,
-            name: "Funt brytyjski",
-            shortName: "GBP",
-            value: 5.25,
-        }
-    ];
-
-    const [currency, setCurrency] = useState("");
+    const [currency, setCurrency] = useState(currencies[0].name);
     
     const [amount, setAmount] = useState("");
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        calculateResult({currency, amount});
+        calculateResult(currency, amount);
     }
 
     return(
@@ -44,9 +24,9 @@ const Form = ({ calculateResult, result }) => {
                     value={currency} 
                     onChange={({ target }) => {setCurrency(target.value)}}
                   >
-                      {currencies.map(currency => (
-                        <option key={currency.id}>
-                            {currency.name}
+                      {currencies.map(element => (
+                        <option key={element.id}>
+                            {element.name}
                         </option>
                       ))
 
@@ -68,7 +48,14 @@ const Form = ({ calculateResult, result }) => {
               </p>
             </fieldset>
           <button className="form__button">Wyślij</button>
-          <span className="form__result">{result}</span>
+          <span className="form__result">
+            {!!result && (
+                <>
+                    {result.formAmount}PLN=
+                    {result.formCurrency}
+                </>
+            )}
+          </span>
         </form>
     )
 }

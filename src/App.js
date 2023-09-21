@@ -6,9 +6,11 @@ function App() {
 
   const [result, setResult] = useState();
 
-  const calculateResult = ({ currency, amount }) => {
-    console.log(currency);
-    console.log(amount);
+  const calculateResult = (currency, amount) => {
+    setResult({
+      formAmount: +amount,
+      formCurrency: currency,  
+    });
   }
 
   return (
