@@ -16,7 +16,7 @@ function App() {
       formResult: amount / value,
       formCurrency: shortName, 
     });
-    
+
   }
 
   return (
