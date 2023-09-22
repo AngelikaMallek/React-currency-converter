@@ -1,6 +1,7 @@
 import "./style.css";
 import currencies from "../currencies"; 
 import {useState} from "react";
+import Result from "./Result";
 
 const Form = ({ calculateResult, result }) => {
 
@@ -48,15 +49,9 @@ const Form = ({ calculateResult, result }) => {
               </p>
             </fieldset>
           <button className="form__button">Wyślij</button>
-          <span className="form__result">
-            {!!result && (
-                <>
-                    {result.formAmount}&nbsp;PLN&nbsp;=&nbsp;
-                    {result.formResult.toFixed(2)}&nbsp;
-                    {result.formCurrency}
-                </>
-            )}
-          </span>
+            <Result 
+              result={result}
+            />
         </form>
     )
 }
