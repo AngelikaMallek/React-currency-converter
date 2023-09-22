@@ -51,7 +51,8 @@ const Form = ({ calculateResult, result }) => {
           <span className="form__result">
             {!!result && (
                 <>
-                    {result.formAmount}PLN=
+                    {result.formAmount}&nbsp;PLN&nbsp;=&nbsp;
+                    {result.formResult.toFixed(2)}&nbsp;
                     {result.formCurrency}
                 </>
             )}
