@@ -3,7 +3,8 @@ const Result = ({ result }) => {
         <span className="form__result">
             {!!result && (
                 <>
-                    {result.formAmount}&nbsp;PLN&nbsp;=&nbsp;
+                    {result.formAmount}&nbsp;PLN&nbsp;=
+                    {" "}
                     {result.formResult.toFixed(2)}&nbsp;
                     {result.formCurrency}
                 </>
