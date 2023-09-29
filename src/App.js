@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div>
-      <Form 
+      <Form
         calculateResult={calculateResult}   
         result={result}   
       />

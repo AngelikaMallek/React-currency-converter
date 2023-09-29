@@ -1,0 +1,12 @@
+.clock {
+    display: flex;
+    justify-content: right;
+}
+
+.clock__content {
+    color: grey;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-family: "Inconsolata", monospace;
+    font-weight: 200;
+}
