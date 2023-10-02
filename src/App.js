@@ -2,6 +2,7 @@ import './App.css';
 import Form from "./Form";
 import {useState} from "react";
 import currencies from './currencies';
+import ImportantText from './ImportantText';
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
         calculateResult={calculateResult}   
         result={result}   
       />
-      <span className="importantText">* - pole wymagane </span>
+      <ImportantText />
     </div>
   );
 }

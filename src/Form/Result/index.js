@@ -1,6 +1,8 @@
+import { StyledResult } from "./styled";
+
 const Result = ({ result }) => {
     return(
-        <span className="form__result">
+        <StyledResult>
             {!!result && (
                 <>
                     {result.formAmount}&nbsp;PLN&nbsp;=
@@ -9,7 +11,7 @@ const Result = ({ result }) => {
                     {result.formCurrency}
                 </>
             )}
-          </span>
+          </StyledResult>
     )
 }
 
