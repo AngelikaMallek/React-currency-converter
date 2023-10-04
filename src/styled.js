@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import background from "./background.jpg";
 
 export const GlobalStyle = createGlobalStyle`
@@ -20,4 +20,13 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 20px;
         font-weight: 700;
     }
+
+`;
+
+export const Text = styled.span`
+        display: inline-block;
+        font-style: italic;
+        text-align: center;
+        width: 100%;
+    
 `;

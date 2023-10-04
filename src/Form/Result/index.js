@@ -1,7 +1,6 @@
 import { StyledResult } from "./styled";
 
-const Result = ({ result }) => {
-    return(
+const Result = ({ result }) => (
         <StyledResult>
             {!!result && (
                 <>
@@ -13,6 +12,5 @@ const Result = ({ result }) => {
             )}
           </StyledResult>
     )
-}
 
 export default Result;
