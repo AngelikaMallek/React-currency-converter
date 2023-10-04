@@ -14,19 +14,7 @@ const useCurrentDate = () => {
 
     }, [])
 
-    const formattedTime = myDate.toLocaleDateString(
-        undefined,
-        { 
-            month: "long", 
-            weekday: "long", 
-            day: "numeric", 
-            hour: "numeric", 
-            minute: "numeric", 
-            second: "numeric"
-        },
-    )
-
-    return formattedTime;
+    return myDate;
 }
 
 export default useCurrentDate;

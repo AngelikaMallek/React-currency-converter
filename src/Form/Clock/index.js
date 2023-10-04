@@ -3,7 +3,19 @@ import useCurrentDate from './useCurrentDate';
 
 const Clock = () => {
     
-    const formattedTime = useCurrentDate();
+    const myDate = useCurrentDate();
+
+    const formattedTime = myDate.toLocaleDateString(
+        undefined,
+        { 
+            month: "long", 
+            weekday: "long", 
+            day: "numeric", 
+            hour: "numeric", 
+            minute: "numeric", 
+            second: "numeric"
+        },
+    )
 
     return (
         <StyledClock>
