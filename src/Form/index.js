@@ -31,7 +31,7 @@ const Form = () => {
   
     }
 
-    const myDate = new Date(Object.values(ratesData.meta));
+    const myDate = new Date(!!ratesData.meta && Object.values(ratesData.meta));
 
     const formattedTime = myDate.toLocaleDateString(
       undefined,
