@@ -12,6 +12,7 @@ This is a simple currency converter. You can recalculate the value of your money
 - React.js
 - Immutability
 - Styled Components
+- API
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
