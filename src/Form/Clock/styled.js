@@ -6,7 +6,7 @@ export const StyledClock = styled.div`
 `;
 
 export const Content = styled.p`
-    color: grey;
+    color: ${({theme}) => theme.colors.grey};
     font-size: 12px;
     letter-spacing: 1px;
     font-family: "Inconsolata", monospace;

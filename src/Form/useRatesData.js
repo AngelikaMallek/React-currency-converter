@@ -17,11 +17,12 @@ export const useRatesData = () => {
                     throw new Error(response.statusText);
                 }
 
-                const { data } = await response.json();
+                const { meta, data } = await response.json();
 
                 setRatesData({
                     state: "success",
                     data,
+                    meta,
                 });
 
             } catch {

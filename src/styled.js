@@ -30,3 +30,13 @@ export const Text = styled.span`
         width: 100%;
     
 `;
+
+export const theme = {
+    colors: {
+        white: '#FFFFFF',
+        teal: '#008080',
+        hoverTeal: 'hsl(180, 100%, 30%)',
+        crimson: '#DC143C',
+        grey: '#808080',
+    }
+};

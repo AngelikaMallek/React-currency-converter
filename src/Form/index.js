@@ -31,6 +31,20 @@ const Form = () => {
   
     }
 
+    const myDate = new Date(ratesData.meta);
+
+    const formattedTime = myDate.toLocaleDateString(
+      undefined,
+      { 
+          month: "long", 
+          weekday: "long", 
+          day: "numeric", 
+          hour: "numeric", 
+          minute: "numeric", 
+          second: "numeric"
+      },
+  )
+
     return(
         <StyledForm onSubmit={onFormSubmit}>
           <Fieldset>
@@ -82,6 +96,7 @@ const Form = () => {
               <Result 
                 result={result}
               />
+              <p></p>
             </>
             ) 
             

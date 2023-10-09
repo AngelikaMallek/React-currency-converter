@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledForm = styled.form`
     margin: 20px;
     padding: 20px;
-    background-color: white;
+    background-color: ${({theme}) => theme.colors.white};
     border-radius: 10px;
 `;
 
@@ -13,10 +13,10 @@ export const Fieldset = styled.fieldset`
 `;
 
 export const Legend = styled.legend`
-    background-color: teal;
+    background-color: ${({theme}) => theme.colors.teal};
     padding: 10px;
     border-radius: 10px;
-    color: white;
+    color: ${({theme}) => theme.colors.white};
 `;
 
 export const Field = styled.input`
@@ -42,21 +42,21 @@ export const Button = styled.button`
     margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
-    color: white;
-    background-color: teal;
+    color: ${({theme}) => theme.colors.white};
+    background-color: ${({theme}) => theme.colors.teal};
     border-radius: 10px;
     border: 0;
 
     &:hover {
-        background-color: hsl(180, 100%, 30%);
+        background-color: ${({theme}) => theme.colors.hoverTeal};
         cursor: pointer;
     }
 `;
 
 export const Loading = styled.p`
-    color: teal;
+    color: ${({theme}) => theme.colors.teal};
 `;
 
 export const Error = styled.p`
-    color: crimson;
+    color: ${({theme}) => theme.colors.crimson};
 `;
