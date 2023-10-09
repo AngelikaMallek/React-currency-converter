@@ -61,3 +61,8 @@ export const Error = styled.p`
     color: ${({theme}) => theme.colors.crimson};
 `;
 
+export const StyledDate = styled.p`
+    color: ${({theme}) => theme.colors.grey};
+    font-size: 15px;
+    text-align: center;
+`;

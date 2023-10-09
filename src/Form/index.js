@@ -1,7 +1,7 @@
 import {useState} from "react";
 import Result from "./Result";
 import Clock from './Clock';
-import { StyledForm, Fieldset, Legend, Field, Text, Button, Loading, Error } from "./styled";
+import { StyledForm, Fieldset, Legend, Field, Text, Button, Loading, Error, StyledDate } from "./styled";
 import { useRatesData } from "./useRatesData";
 
 const Form = () => {
@@ -93,7 +93,10 @@ const Form = () => {
               <Result 
                 result={result}
               />
-              <p>Kursy walut pobierane są z Europejskiego Banku Centralnego. Aktualne na dzień: {formattedTime}</p>
+              <StyledDate>
+                Kursy walut pobierane są z Europejskiego Banku Centralnego. 
+                <br />Aktualne na dzień: <b>{formattedTime}</b>
+              </StyledDate>
             </>
             ) 
             
