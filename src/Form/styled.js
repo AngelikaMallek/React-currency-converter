@@ -9,6 +9,7 @@ export const StyledForm = styled.form`
 
 export const Fieldset = styled.fieldset`
     padding: 20px;
+    padding-bottom: 0;
 `;
 
 export const Legend = styled.legend`
@@ -50,4 +51,12 @@ export const Button = styled.button`
         background-color: hsl(180, 100%, 30%);
         cursor: pointer;
     }
+`;
+
+export const Loading = styled.p`
+    color: teal;
+`;
+
+export const Error = styled.p`
+    color: crimson;
 `;

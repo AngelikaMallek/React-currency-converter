@@ -1,12 +1,16 @@
-import currencies from "../currencies"; 
 import {useState} from "react";
 import Result from "./Result";
 import Clock from './Clock';
-import { StyledForm, Fieldset, Legend, Field, Text, Button } from "./styled";
+import { StyledForm, Fieldset, Legend, Field, Text, Button, Loading, Error } from "./styled";
+import { useRatesData } from "./useRatesData";
 
-const Form = ({ calculateResult, result }) => {
+const Form = () => {
 
-    const [currency, setCurrency] = useState(currencies[0].name);
+    const ratesData = useRatesData();
+
+    const [result, setResult] = useState(null);
+
+    const [currency, setCurrency] = useState("EUR");
     
     const [amount, setAmount] = useState("");
 
@@ -15,44 +19,74 @@ const Form = ({ calculateResult, result }) => {
         calculateResult(currency, amount);
     }
 
+    const calculateResult = (currency, amount) => {
+
+      const value = ratesData.data[currency].value;
+      
+      setResult({
+        formAmount: +amount,
+        formResult: amount / value,
+        formCurrency: currency, 
+      });
+  
+    }
+
     return(
         <StyledForm onSubmit={onFormSubmit}>
-            <Fieldset>
-              <Legend>Kalkulator walut</Legend>
-              <Clock />
-              <p>
-                  <Text>Podaj walutę, na którą chcesz przeliczyć:</Text>
-                  <Field
-                    as="select"
-                    value={currency} 
-                    onChange={({ target }) => {setCurrency(target.value)}}
-                  >
-                      {currencies.map(element => (
-                        <option key={element.id}>
-                            {element.name}
-                        </option>
-                      ))
-
-                      }
-                  </Field>
-              </p>
-              <p>
-                  <label>
-                      <Text>Podaj ile pieniędzy chcesz wymienić:*</Text>
+          <Fieldset>
+                <Legend>Kalkulator walut</Legend>
+                <Clock />
+            {ratesData.state === "loading" ? (
+                <Loading>
+                  Sekundka... <br /> Ładuję kursy walut z Europejskiego Banku Centralnego
+                </Loading>
+            ) 
+            : ratesData.state === "error" ? (
+                <Error>
+                  Hmm.... Coś poszło nie tak. Sprawdź, czy masz połączenie z internetem
+                </Error>
+            )
+            : (
+              <>
+                
+                  <p>
+                      <Text>Podaj walutę, na którą chcesz przeliczyć:</Text>
                       <Field
-                        name="quantity" 
-                        type="number" 
-                        value={amount} 
-                        onChange={({ target }) => {setAmount(target.value)}}
-                        required 
-                      />
-                  </label>
-              </p>
+                        as="select"
+                        value={currency} 
+                        onChange={({ target }) => {setCurrency(target.value)}}
+                      >
+                          {Object.keys(ratesData.data).map(((currency) => (
+                          <option
+                            key={currency}
+                            value={currency}
+                          >
+                            {currency}
+                          </option>
+                        )))}
+                      </Field>
+                  </p>
+                  <p>
+                      <label>
+                          <Text>Podaj ile pieniędzy chcesz wymienić:*</Text>
+                          <Field
+                            name="quantity" 
+                            type="number" 
+                            value={amount} 
+                            onChange={({ target }) => {setAmount(target.value)}}
+                            required 
+                          />
+                      </label>
+                  </p>
+              <Button>Wyślij</Button>
+              <Result 
+                result={result}
+              />
+            </>
+            ) 
+            
+            }
             </Fieldset>
-          <Button>Wyślij</Button>
-            <Result 
-              result={result}
-            />
         </StyledForm>
     )
 }
