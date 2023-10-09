@@ -31,17 +31,14 @@ const Form = () => {
   
     }
 
-    const myDate = new Date(ratesData.meta);
+    const myDate = new Date(Object.values(ratesData.meta));
 
     const formattedTime = myDate.toLocaleDateString(
       undefined,
       { 
-          month: "long", 
-          weekday: "long", 
-          day: "numeric", 
-          hour: "numeric", 
-          minute: "numeric", 
-          second: "numeric"
+          month: "2-digit",
+          day: "2-digit", 
+          year: "numeric",
       },
   )
 
@@ -96,7 +93,7 @@ const Form = () => {
               <Result 
                 result={result}
               />
-              <p></p>
+              <p>Kursy walut pobierane są z Europejskiego Banku Centralnego. Aktualne na dzień: {formattedTime}</p>
             </>
             ) 
             

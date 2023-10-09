@@ -60,3 +60,4 @@ export const Loading = styled.p`
 export const Error = styled.p`
     color: ${({theme}) => theme.colors.crimson};
 `;
+
