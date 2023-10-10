@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Result from "./Result";
 import Clock from './Clock';
 import { StyledForm, Fieldset, Legend, Field, Text, Button, Loading, Error, StyledDate } from "./styled";
@@ -15,8 +15,8 @@ const Form = () => {
     const [amount, setAmount] = useState("");
 
     const onFormSubmit = (event) => {
-        event.preventDefault();
-        calculateResult(currency, amount);
+      event.preventDefault();
+      calculateResult(currency, amount);
     }
 
     const calculateResult = (currency, amount) => {
@@ -25,13 +25,13 @@ const Form = () => {
       
       setResult({
         formAmount: +amount,
-        formResult: amount / value,
+        formResult: amount * value,
         formCurrency: currency, 
       });
   
     }
 
-    const myDate = new Date(!!ratesData.meta && Object.values(ratesData.meta));
+    const [myDate, setMyDate] = useState(new Date(ratesData.meta));
 
     const formattedTime = myDate.toLocaleDateString(
       undefined,
@@ -40,68 +40,74 @@ const Form = () => {
           day: "2-digit", 
           year: "numeric",
       },
-  )
+    )
 
     return(
         <StyledForm onSubmit={onFormSubmit}>
           <Fieldset>
-                <Legend>Kalkulator walut</Legend>
-                <Clock />
-            {ratesData.state === "loading" ? (
-                <Loading>
-                  Sekundka... <br /> Ładuję kursy walut z Europejskiego Banku Centralnego
-                </Loading>
+            <Legend>
+              Kalkulator walut
+            </Legend>
+            <Clock />
+
+            {ratesData.status === "loading" ? (
+              <Loading>
+                Sekundka... <br /> Ładuję kursy walut z Europejskiego Banku Centralnego
+              </Loading>
             ) 
-            : ratesData.state === "error" ? (
+
+            : ratesData.status === "error" ? (
                 <Error>
                   Hmm.... Coś poszło nie tak. Sprawdź, czy masz połączenie z internetem
                 </Error>
             )
+
             : (
               <>
-                
-                  <p>
-                      <Text>Podaj walutę, na którą chcesz przeliczyć:</Text>
-                      <Field
-                        as="select"
-                        value={currency} 
-                        onChange={({ target }) => {setCurrency(target.value)}}
+                <p>
+                  <Text>
+                    Podaj walutę, na którą chcesz przeliczyć:
+                  </Text>
+                  <Field
+                    as="select"
+                    value={currency} 
+                    onChange={({ target }) => {setCurrency(target.value)}}
+                  >
+                    {Object.keys(ratesData.data).map(((currency) => (
+                      <option
+                        key={currency}
+                        value={currency}
                       >
-                          {Object.keys(ratesData.data).map(((currency) => (
-                          <option
-                            key={currency}
-                            value={currency}
-                          >
-                            {currency}
-                          </option>
-                        )))}
-                      </Field>
-                  </p>
-                  <p>
-                      <label>
-                          <Text>Podaj ile pieniędzy chcesz wymienić:*</Text>
-                          <Field
-                            name="quantity" 
-                            type="number" 
-                            value={amount} 
-                            onChange={({ target }) => {setAmount(target.value)}}
-                            required 
-                          />
-                      </label>
-                  </p>
-              <Button>Wyślij</Button>
-              <Result 
-                result={result}
-              />
-              <StyledDate>
-                Kursy walut pobierane są z Europejskiego Banku Centralnego. 
-                <br />Aktualne na dzień: <b>{formattedTime}</b>
-              </StyledDate>
-            </>
-            ) 
-            
-            }
-            </Fieldset>
+                        {currency}
+                      </option>
+                    )))}
+                  </Field>
+                </p>
+                <p>
+                  <label>
+                    <Text>Podaj ile pieniędzy chcesz wymienić:*</Text>
+                    <Field
+                      name="quantity" 
+                      type="number" 
+                      value={amount} 
+                      onChange={({ target }) => {setAmount(target.value)}}
+                      required 
+                    />
+                  </label>
+                </p>
+                <Button>
+                  Wyślij
+                </Button>
+                <Result 
+                  result={result}
+                />
+                <StyledDate>
+                  Kursy walut pobierane są z Europejskiego Banku Centralnego. 
+                  <br />Aktualne na dzień: <b>{formattedTime}</b>
+                </StyledDate>
+              </>
+            )}
+          </Fieldset>
         </StyledForm>
     )
 }
