@@ -31,7 +31,13 @@ const Form = () => {
   
     }
 
-    const [myDate, setMyDate] = useState(new Date(ratesData.meta));
+    const [myDate, setMyDate] = useState(new Date());
+    
+    useEffect(() => {
+     setMyDate(
+       new Date(!!ratesData.meta && ratesData.meta.last_updated_at)
+     )
+    },[ratesData]);
 
     const formattedTime = myDate.toLocaleDateString(
       undefined,
