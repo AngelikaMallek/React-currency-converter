@@ -3,7 +3,7 @@
 ![Animation](images/Animation.gif)
 You can visit my website here: [currency-converter](https://angelikamallek.github.io/react-currency-converter/)
 ## Description 
-This is a simple currency converter. You can recalculate the value of your money.
+This is a simple currency converter. You can recalculate the value of your money. This project was bootstrapped with Create React App and downloads data from the Polish National Bank.
 ## Technologies
 - HTML
 - JavaScript
